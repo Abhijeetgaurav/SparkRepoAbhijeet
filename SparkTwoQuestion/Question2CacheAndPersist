@@ -1,0 +1,11 @@
+2.Explore Cache and Persist method in Spark.
+Ans: Both cache and persist methods are used fro an optimization mechanism to store the intermediate computation of an RDD,DataFrame, and Dataset
+     so they can be reused, both caching and persisting are used to save the Spark RDD, Df and datasets.
+
+     The cache() method is used to mark an RDD or DF for caching. when you call this method on an RDD or DF, Spark will keep the data in memory across
+     operations and partitions.Caching doesn't happen immediately.It occurs only when the RDD or DF is first calculated in an action.
+
+     The persist() method is similar to cache() but provides more flexibility in specifying storage options. With persist(), you can store it to the user-defined
+     storage level. When you persist a dataset, each node stores its partitioned data in memory and reuses them in other actions on that dataset.
+     And persisted data on nodes are fault-tolerant meaning if any data or parition of Dataset is lost, it will automatically recomputed using the
+     original transformations that created it.

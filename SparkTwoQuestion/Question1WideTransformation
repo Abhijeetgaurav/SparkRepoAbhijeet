@@ -1,0 +1,15 @@
+1. Why is it 200 number of partitions are formed after wide transformation in Spark?
+Ans: Wide transformations are transformations in Spark that require shuffling of data between partitions.
+     These transformations require the exchange of data between partitions and can be more expensive
+     compared to narrow transformations.
+     Examples of wide transformations in Spark: reduceByKey,groupByKey,aggregateByKey,etc.
+
+     The reason for the default 200 number of partition is after a transformation,including shuffles it is
+     determined by the 'spark.sql.shuffle.partitions' config parameter. This parameter monitors the number of partiions
+     to use when performing operations that require data to be redistributed across the cluster.
+
+     The default value of 'spark.sql.shuffle.partitions' is 200, it means if we are not going to give any explicit parameter
+     then Spark will use 200 partitions for shuffling data during wide transformations.
+
+     We can explicitly set 'spark.sql.shuffle.partitions' to a different value while we are creating the spark session
+     .config("spark.sql.suffle.partitions","120")
